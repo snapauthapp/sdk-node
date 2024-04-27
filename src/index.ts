@@ -52,14 +52,11 @@ class SnapAuth {
         ...data,
       }
     } catch (error) {
-      if (error instanceof Error) {
-        console.error(error.stack)
-      }
       return {
         ok: false,
         result: null,
         errors: [
-          { code: 'network_error', message: 'it bad' },
+          { code: 'network_error', message: 'A network error occurred' },
         ]
       }
     }
