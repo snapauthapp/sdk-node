@@ -6,18 +6,22 @@ interface Options {
   host?: URL
 }
 
+declare var VERSION: string
 class SnapAuth {
 
-  private secretKey: string
+  private authHeader: string
   private host: URL
 
   constructor(secretKey: string|undefined = undefined, options: Options = {}) {
-    // if (secretKey === undefined) {
-    //   const envSecret = process.env.SNAPAUTH_SECRET_KEY
-    //   if (envSecret !== undefined
-    this.secretKey = secretKey || 'FIXME'
+    secretKey = secretKey || process.env.SNAPAUTH_SECRET_KEY
+    if (secretKey === undefined) {
+        throw new ErrorEvent('SnapAuth secret key not provided. Set it explicitly or through the SNAPAUTH_SECRET_KEY environment variable.')
+    }
+    this.authHeader = 'Basic ' + btoa(':' + secretKey)
     this.host = options.host || new URL('https://api.snapauth.app')
-    // TODO: validate host
+    if (!this.host.hostname.length) {
+      throw new Error('Invalid SnapAuth host')
+    }
   }
 
   attachRegistration = async (token: string, user: UserInfo): Promise<WrappedResponse<RegistrationResponse>> => {
@@ -28,17 +32,17 @@ class SnapAuth {
     return await this.post('/auth/verify', { token })
   }
 
+
   private post = async (path: string, body: any): Promise<WrappedResponse<any>> => {
     try {
       const response = await fetch(new URL(path, this.host), {
         method: 'POST',
         headers: {
-          Authorization: `Basic ${btoa(':' + this.secretKey)}`,
+          Authorization: this.authHeader,
           Accept: 'application/json',
           'Content-type': 'application/json',
-          // content-length?
-          'User-agent': 'node-sdk/0.0.0 fetch/??? node/???',
-          'X-SDK': 'node/0.0.0',
+          'User-agent': `node-sdk/${VERSION} node/${process.version}`,
+          'X-SDK': `node/${VERSION}`,
         },
         body: JSON.stringify(body),
       })
@@ -84,4 +88,3 @@ interface SAError {
 }
 
 export default SnapAuth
-
