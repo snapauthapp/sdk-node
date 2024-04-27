@@ -64,8 +64,8 @@ class SnapAuth {
 }
 
 type WrappedResponse<T> =
-  | { ok: true, result: T, errors: SAError[] }
-  | { ok: false, result: null, errors: SAError[] }
+  | { ok: true, result: T, errors: SnapAuthError[] }
+  | { ok: false, result: null, errors: SnapAuthError[] }
 
 
 interface RegistrationResponse {
@@ -79,7 +79,7 @@ interface AuthResponse {
   }
 }
 
-interface SAError {
+interface SnapAuthError {
   code: string
   message: string
 }
