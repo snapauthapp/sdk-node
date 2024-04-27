@@ -12,6 +12,11 @@
   },
   "keywords": [],
   "author": "",
+  "homepage": "https://www.snaputh.app",
+  "bugs": {
+    "url": "https://github.com/snapauthapp/sdk-node/issues"
+  },
+  "repository": "github:snapauthapp/sdk-node",
   "license": "BSD-3-Clause",
   "files": [
     "dist"
