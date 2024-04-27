@@ -5,6 +5,11 @@ The official NodeJS SDK for SnapAuth 🫰
 This is for _server_ code.
 If you're looking for the _client_ integration, check out `@snapauth/sdk`.
 
+[SnapAuth Homepage](https://www.snapauth.app)
+[Docs](https://docs.snapauth.app)
+[Dashboard](https://dashboard.snapauth.app)
+[Github](https://github.com/snapauthapp/sdk-node)
+
 ## Installation and Setup
 
 ```bash
