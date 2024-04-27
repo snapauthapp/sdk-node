@@ -46,13 +46,10 @@ class SnapAuth {
         },
         body: JSON.stringify(body),
       })
-      if (response.ok) {
-        const data = await response.json()
-        console.debug(data)
-        // FIXME: tighten this a lot
-        return { ok: true, result: data.result, errors: data.errors ?? [] }
-      } else {
-        throw new Error('nooope')
+      const data = await response.json()
+      return {
+        ok: response.ok,
+        ...data,
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -60,13 +57,22 @@ class SnapAuth {
       }
       return {
         ok: false,
+        result: null,
         errors: [
-          { code: 'uhoh', message: 'it bad' },
+          { code: 'network_error', message: 'it bad' },
         ]
       }
     }
   }
+}
 
+type WrappedResponse<T> =
+  | { ok: true, result: T, errors: SAError[] }
+  | { ok: false, result: null, errors: SAError[] }
+
+
+interface RegistrationResponse {
+  id: string
 }
 
 interface AuthResponse {
@@ -75,12 +81,6 @@ interface AuthResponse {
     handle: string|null
   }
 }
-interface RegistrationResponse {
-  id: string
-}
-type WrappedResponse<T> =
-  | { ok: true, result: T, errors: SAError[] }
-  | { ok: false, errors: SAError[] }
 
 interface SAError {
   code: string
