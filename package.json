@@ -1,0 +1,42 @@
+{
+  "name": "@snapauth/node-sdk",
+  "version": "0.1.0",
+  "description": "SnapAuth official SDK - server component for passkey and webauthn integration",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "prepublish": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "2fa",
+    "fido",
+    "mfa",
+    "passkeys",
+    "snapauth",
+    "u2f",
+    "webauthentication",
+    "webauthn"
+  ],
+  "author": "",
+  "homepage": "https://www.snaputh.app",
+  "bugs": {
+    "url": "https://github.com/snapauthapp/sdk-node/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snapauthapp/sdk-node.git"
+  },
+  "license": "BSD-3-Clause",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.4.5",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
