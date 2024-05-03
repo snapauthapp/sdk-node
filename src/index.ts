@@ -24,7 +24,7 @@ class SnapAuth {
     }
   }
 
-  attachRegistration = async (token: string, user: UserInfo): Promise<WrappedResponse<RegistrationResponse>> => {
+  attachRegistration = async (token: string, user: UserInfo): Promise<WrappedResponse<CredentialEntity>> => {
     return await this.post('/registration/attach', { token, user })
   }
 
@@ -68,15 +68,16 @@ type WrappedResponse<T> =
   | { ok: false, result: null, errors: SnapAuthError[] }
 
 
-interface RegistrationResponse {
+
+interface CredentialEntity {
+  id: string
+}
+interface UserEntity {
   id: string
 }
 
 interface AuthResponse {
-  user: {
-    id: string
-    handle: string|null
-  }
+  user: UserEntity
 }
 
 interface SnapAuthError {
