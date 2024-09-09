@@ -25,7 +25,7 @@ class SnapAuth {
   }
 
   attachRegistration = async (token: string, user: UserInfo): Promise<WrappedResponse<CredentialEntity>> => {
-    return await this.post('/registration/attach', { token, user })
+    return await this.post('/credential/create', { token, user })
   }
 
   signIn = async (token: string): Promise<WrappedResponse<AuthResponse>> => {
