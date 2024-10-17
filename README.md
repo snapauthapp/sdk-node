@@ -76,7 +76,7 @@ app.post('/register', async (request, response) => {
   // Then save the new passkey
   const credentialInfo = await snapAuth.attachRegistration(token, {
     id: user.id, // You may need to cast this to a string first, e.g. `String(user.id)`
-    handle: user.username, // Probably the value from above
+    username: user.username, // Probably the value from above
   })
   // That's it. Proceed as normal.
 })
@@ -84,10 +84,10 @@ app.post('/register', async (request, response) => {
 
 > [!NOTE]
 > The `id` is what you should use during authentication; it can not be changed.
-> The `handle` is to make client code more straightforward, and is typically the value the user would type in to a username field.
+> The `username` is to make client code more straightforward, and is typically the value the user would type in to a username field.
 >
-> You MAY hash or obfuscate the `handle`, or omit it entirely.
-> If you do, you'll need to either a) repeat the procedure in client code during authentication or b) rely on the user's id instead.
+> `username` MAY be omitted.
+> We automatically perform a one-way hash before storing it in order to preserve user privacy, so it will not be returned to you later.
 
 ### Authenticating
 
