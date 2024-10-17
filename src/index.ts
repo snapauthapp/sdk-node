@@ -1,6 +1,6 @@
 interface UserInfo {
   id: string
-  handle: string|null
+  username: string|null
 }
 interface Options {
   host?: URL
