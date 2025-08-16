@@ -1,6 +1,6 @@
 {
   "name": "@snapauth/node-sdk",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "SnapAuth official SDK - server component for passkey and webauthn integration",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
