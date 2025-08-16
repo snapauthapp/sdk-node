@@ -28,8 +28,15 @@ class SnapAuth {
     return await this.post('/credential/create', { token, user })
   }
 
-  signIn = async (token: string): Promise<WrappedResponse<AuthResponse>> => {
+  verifyAuthToken = async (token: string): Promise<WrappedResponse<AuthResponse>> => {
     return await this.post('/auth/verify', { token })
+  }
+
+  /**
+   * @deprecated - use verifyAuthToken instead
+   */
+  signIn = async (token: string): Promise<WrappedResponse<AuthResponse>> => {
+    return await this.verifyAuthToken(token)
   }
 
 

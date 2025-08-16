@@ -95,7 +95,7 @@ app.post('/register', async (request, response) => {
 app.post('/signin', async (request, response) => {
   // { token: string }
   const token = request.body.token
-  const auth = await snapAuth.signIn(token)
+  const auth = await snapAuth.verifyAuthToken(token)
   if (auth.ok) {
     signInUserWithId(auth.result.user.id)
   } else {
